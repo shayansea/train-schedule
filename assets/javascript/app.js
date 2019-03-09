@@ -77,7 +77,7 @@ database.ref().on("child_added", function(childSnapshot) {
 var timeDiff = moment().diff(moment(convertedTime),"minutes");
 var timeApart = timeDiff%trainRate; // % gives remainder of a division
 var timeLeft = trainRate-timeApart; 
-var nextArrival = moment().add(timeLeft, "m").format("LT")
+var nextArrival = moment().add(timeLeft, "minutes").format("hh:mm")
 
 
 
@@ -87,7 +87,7 @@ var newRow = $("<tr>").append(
   $("<td>").text(trainRate),
   $("<td>").text(nextArrival),
   $("<td>").text(timeLeft),
-)
+);
   // // Prettify the employee start
   // var empStartPretty = moment.unix(empStart).format("MM/DD/YYYY");
 
@@ -113,7 +113,7 @@ var newRow = $("<tr>").append(
   // );
 
   // Append the new row to the table
-  $("#schedule-table").append("<tr> <td>" + trainName + "</td>  " + "<td>" + trainDest + "</td></tr>");
+  $("#schedule-table").append(newRow);
   
 });
 
