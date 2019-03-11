@@ -20,6 +20,12 @@ firebase.initializeApp(config);
 
 var database = firebase.database();
 
+var trainName = "";
+var trainDest = "";
+var trainRate = "";
+var nextArrival = "HH:mm";
+var timeLeft = 0;
+
 // 2. Button for adding Employees
 $("#add-train-btn").on("click", function(event) {
   event.preventDefault();
@@ -42,9 +48,12 @@ $("#add-train-btn").on("click", function(event) {
   database.ref().push(newTrain);
 
   // Logs everything to console
-  console.log(newTrain);
+  console.log(newTrain.name);
+  console.log(newTrain.dest);
+  console.log(newTrain.start);
+  console.log(newTrain.rate);
 
-  alert("Employee successfully added");
+  alert("New train successfully added to the schedule");
 
   // Clears all of the text-boxes
   $("#train-name-input").val("");
@@ -52,6 +61,8 @@ $("#add-train-btn").on("click", function(event) {
   $("#start-input").val("");
   $("#rate-input").val("");
 });
+
+var count = 1;
 
 // 3. Create Firebase event for adding employee to the database and a row in the html when a user adds an entry
 database.ref().on("child_added", function(childSnapshot) {
