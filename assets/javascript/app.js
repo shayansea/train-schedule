@@ -80,6 +80,8 @@ database.ref().on("child_added", function(childSnapshot) {
   console.log(trainStart);
   console.log(trainRate);
 
+  console.log(moment());
+  
   var convertedTime = moment(trainStart, "hh:mm").subtract(1, "years");
   console.log(convertedTime);
 
@@ -92,6 +94,7 @@ var nextArrival = moment().add(timeLeft, "minutes").format("hh:mm")
 
 
 
+
 var newRow = $("<tr>").append(
   $("<td>").text(trainName),
   $("<td>").text(trainDest),
@@ -99,6 +102,9 @@ var newRow = $("<tr>").append(
   $("<td>").text(nextArrival),
   $("<td>").text(timeLeft),
 );
+
+console.log(newRow);
+
   // // Prettify the employee start
   // var empStartPretty = moment.unix(empStart).format("MM/DD/YYYY");
 
@@ -123,8 +129,26 @@ var newRow = $("<tr>").append(
   
   // );
 
+
+  $("#schedule-table").append(
+    "<tr><td>" +
+     trainName +
+      "</td>" +
+      "<td>" +
+      trainDest +
+      "</td>" +
+      "<td>" +
+      trainRate +
+      "</td>" +
+      "<td>" +
+      nextArrival +
+      "</td>" +
+      "<td>" +
+      timeLeft +
+      "</td></tr>"
+  );
   // Append the new row to the table
-  $("#schedule-table").append(newRow);
+  // $("#schedule-table").append(newRow);
   
 });
 
